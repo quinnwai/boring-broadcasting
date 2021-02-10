@@ -1,4 +1,4 @@
 # CSE330
-Vishal Agarwal --- 488422 --- avishal@cyber
+Vishal Agarwal --- 488422 --- avishal-cyber
 
 REPLACE-THIS-TEXT-WITH-YOUR-PARTNERS-NAME-STUDENT-ID-AND-GITHUB-USERNAME
