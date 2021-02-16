@@ -1,4 +1,5 @@
 # CSE330
+## Group Members
 Vishal Agarwal --- 488422 --- avishal-cyber
 
-REPLACE-THIS-TEXT-WITH-YOUR-PARTNERS-NAME-STUDENT-ID-AND-GITHUB-USERNAME
+Quinn Wai Wong --- 475704 --- quinnwai
