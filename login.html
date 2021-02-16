@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>News Site Login</title>
+    <meta name="login" content="login page for the news site"/>
+</head>
+<body>
+    <h1>BBC News</h1>
+    <p>
+        Welcome to Boring Broadcasting Network News: an unoriginal news site for original viewers.
+    </p>
+
+    <h2><br>User Sign-In</h2>
+    <p>
+        Login here as a registered user
+    </p>
+
+    <form action="registered_feed.php" method="POST">
+        <label>Username: <input type="text" name="username"/> </label>
+        <label>Password: <input type="text" name="password"/> </label>
+        <input type="submit" value ="login"/>
+    </form>
+
+    <h2><br>Guest Sign-In</h2>
+    <p>
+        Want to login in as a guest?
+    </p>
+
+    <form action="unregistered_feed.php" method="POST">
+        Login as guest: <input type="submit" value ="login"/>
+    </form>
+
+    <h2><br>New Users</h2>
+    <p>
+        Want to register instead?
+    </p>
+   <form action="register.php" method="POST">
+        <label>Username: <input type="text" name="username" /> </label>
+        <input type="submit" value="register" />
+    </form>
+
+</body> 
+</html>
