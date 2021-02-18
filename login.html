@@ -18,7 +18,7 @@
 
     <form action="feed.php" method="POST">
         <label>Username: <input type="text" name="username"/> </label>
-        <label>Password: <input type="text" name="password"/> </label>
+        <label>Password: <input type="password" name="password"/> </label>
         <input type="hidden" name="isUser" value="user"/> </label>
         <input type="submit" value ="login"/>
     </form>
@@ -39,6 +39,9 @@
     </p>
    <form action="register.php" method="POST">
         <label>Username: <input type="text" name="username" /> </label>
+        <label>First Name: <input type="text" name="first" /> </label>
+        <label>Last Name: <input type="text" name="last" /> </label>
+        <label>Password: <input type="password" name="password" /> </label>
         <input type="submit" value="register" />
     </form>
 
