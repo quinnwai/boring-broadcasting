@@ -10,7 +10,7 @@ Link to Site: http://ec2-18-219-113-131.us-east-2.compute.amazonaws.com/~qwong/m
 
 Hash passwords
 
-Logout feature
+//Logout feature
 
 Need to add jpeg of SHOW CREATE TABLE for all tables
 
