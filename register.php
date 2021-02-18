@@ -11,8 +11,8 @@ if(!$stmt){
 	printf("Query Prep Failed: %s\n", $mysqli->error);
 	exit;
 }
-
-$stmt->bind_param('sss', $first, $last, $username, $password);
+// not safe to use register yet, need to figure out hash password
+//$stmt->bind_param('sss', $first, $last, $username, $password);
 
 $stmt->execute();
 
