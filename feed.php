@@ -21,4 +21,6 @@ while($stmt->fetch()){
 }
 echo "</ul>\n";
 $stmt->close();
+
+//if isUser, display a tab at top of screen -> Edit comments/stroies
 ?>
