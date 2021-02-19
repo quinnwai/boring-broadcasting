@@ -1,8 +1,10 @@
 <?php
 // Content of database.php
 
-$mysqli = new mysqli('localhost', 'news_admin', 'news_pass', 'news');
+// login as prepared user with restricted permissions
+$mysqli = new mysqli('localhost', 'news_basic', 'select_insert_delete_only', 'news');
 
+// error message if cannot connect
 if($mysqli->connect_errno) {
 	printf("Connection Failed: %s\n", $mysqli->connect_error);
 	exit;
