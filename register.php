@@ -11,10 +11,9 @@ session_start();
 //connect to database  (require acts like an include to include code from other script into here)
 require 'database.php';
 
-
 //initialise all variables
 $is_user = false;
-$username = (string) $_POST['username'];
+$username = strtolower((string) $_POST['username']);
 $first_name = (string) $_POST['first_name'];
 $last_name = (string) $_POST['last_name'];
 $password = (string) $_POST['password'];
@@ -29,26 +28,25 @@ if(!$stmt){
 }
 
 $stmt->execute();
-$stmt->bind_result($u_list);
-while($stmt->fetch()); // this does the hard work to get data row by row
-$stmt->close();
+$stmt->bind_result($u);
 
-//check if username already exists
-foreach($u_list as $u){
-    if ($username == $u) {
+//for each username (row) in db, check if username already exists
+while($stmt->fetch()){
+    if ($username == strtolower($u)) {
         $is_user = true;
         break;
     }
-}
+}; 
+$stmt->close();
 
-//if username already exists, say so and store nothing
+//// 2: Add User to Table ////
+
+//if username already exists, tell client and store nothing
 if($is_user){
-    echo "The username already exists! Please resubmit the form. <br>";
-
-    //TODO: make sure redirect is right
+    printf("The username %s already exists! Please resubmit the form. <br>", $username);
 }
 else {
-    //// 2: Add User to Table ////
+    //else store all user data in new row
     $stmt = $mysqli->prepare("insert into users (username, first_name, last_name, password) values (?, ?, ?, ?)");
     if(!$stmt){
         printf("Query Prep Failed: %s\n", $mysqli->error);
@@ -59,7 +57,7 @@ else {
     $stmt->execute();
     $stmt->close();
 
-    printf("Welcome, %s %s! <br>", $first_name, $last_name);
+    printf("Welcome, %s %s! <br>", htmlentities($first_name), htmlentities($last_name));
 }
 ?>
 
