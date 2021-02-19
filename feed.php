@@ -13,7 +13,7 @@ $stmt->bind_result($title, $body, $link);
 
 echo "<ul>\n";
 while($stmt->fetch()){
-	printf("\t<li>%s %s %s</li>\n",
+	printf("\t<li>Title: %s <br> Body: %s <br> Link: %s</li>\n",
 		htmlspecialchars($title),
 		htmlspecialchars($body),
         htmlspecialchars($link)
