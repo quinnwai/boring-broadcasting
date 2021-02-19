@@ -28,11 +28,11 @@ if(!$stmt){
 }
 
 $stmt->execute();
-$stmt->bind_result($u);
+$stmt->bind_result($username_db);
 
 //for each username (row) in db, check if username already exists
 while($stmt->fetch()){
-    if ($username == strtolower($u)) {
+    if ($username == strtolower($username_db)) {
         $is_user = true;
         break;
     }
@@ -42,7 +42,10 @@ $stmt->close();
 //// 2: Add User to Table ////
 
 //if username already exists, tell client and store nothing
-if($is_user){
+if($username == "" || $first_name == "" || $last_name == "" || $password == ""){
+    printf("Login failed. Please fill out all of the information in the boxes. <br>");
+}
+else if($is_user){
     printf("The username %s already exists! Please resubmit the form. <br>", $username);
 }
 else {
