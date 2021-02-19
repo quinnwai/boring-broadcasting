@@ -1,5 +1,8 @@
 <?php
 require 'database.php';
+require "authenticate.php";
+
+echo $isUser;
 
 $stmt = $mysqli->prepare("select title, body, link from stories");
 if(!$stmt){
@@ -23,4 +26,13 @@ echo "</ul>\n";
 $stmt->close();
 
 //if isUser, display a tab at top of screen -> Edit comments/stroies
+if ($isUser) {
+	echo "The dude's a user";
+}
+else if (!$isUser) {
+	echo "The dude aint a user";
+}
+else {
+	echo "Bruh. No idea";
+}
 ?>

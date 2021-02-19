@@ -33,15 +33,15 @@ $stmt->close();
 
 
 if(!$is_user){
-    printf("Incorrect username or password \n");
+    //printf("Incorrect username or password \n");
     ?>
 
     <form action="login.html">
-        <label> Head back to login page? </label>
+        <p>Logged in as guest </p>
+        <label>Try logging in as user?</label>
         <input type="submit" value="login" />
     </form>
     
     <?php
-    exit();
 }
 ?>
