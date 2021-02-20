@@ -2,8 +2,6 @@
 require 'database.php';
 require "authenticate.php";
 
-echo $isUser;
-
 $stmt = $mysqli->prepare("select id,title, body, link, 
 comments.comment, comments.post_date from stories 
 join comments on (comments.story_id = stories.id)
