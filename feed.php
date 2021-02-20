@@ -17,14 +17,20 @@ $stmt->execute();
 
 $stmt->bind_result($id, $title, $body, $link, $comments, $post_date);
 
+if ($isUser)  { ?>
+	<a href="user_data.php"> Want to edit/delete your own stories or comments </a>
+<?php  }
+
 echo "<ul>\n";
 while($stmt->fetch()){
 	printf("\t<li>Title: %s <br> 
 	Body: %s <br> 
 	Link: %s <br>
+    <ul>\n
 	\t<li>Comment : %s <br>
 	Post Date: %s
-	</li></li>\n",
+	</li></li>
+    <ul>\n",
 		htmlspecialchars($title),
 		htmlspecialchars($body),
         htmlspecialchars($link),
@@ -35,7 +41,7 @@ while($stmt->fetch()){
 		<form action="comment.php">
 			<label> Add a comment:<input type = "text" name="comment"/> </label>
 			<input type="hidden" name = "story_id" value = <?php $id  ?>>
-			<input type="submit" value="login" />
+			<input type="submit" />
 		</form>
 	<?php }
 }
