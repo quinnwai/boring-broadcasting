@@ -34,6 +34,7 @@ while($stmt->fetch()){
     printf("total truth value is %d \n <br><br>", htmlentities($username == strtolower($username_db) && $hash == $hash_db));
     if ($username == strtolower($username_db) && strcmp($hash, $hash_db) == 0){
         $is_user = true;
+        $_SESSION['username'] = $username;
         printf("setting isUser to true!!");
         break;
     }
