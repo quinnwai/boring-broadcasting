@@ -10,24 +10,22 @@ require 'get_token.php';
 require 'database.php';
 
 //get details to update
-$story_id = (string)$_POST['story_id'];
+$story_id = $_POST['story_id'];
 $title = (string)$_POST['title'];
 $body = (string)$_POST['body'];
 $link = (string)$_POST['link'];
 
 // FVA: might want to bind params here
-$stmt = $mysqli->prepare("UPDATE `stories` SET (title, body, link) values (?,?,?)
-WHERE id=$story_id");
+$stmt = $mysqli->prepare("UPDATE `stories` SET title = ?, body = ?, link = ?
+WHERE id = ?");
 
-$stmt->bind_param('sss', $title, $body, $link);
+$stmt->bind_param('sssi', $title, $body, $link, $story_id);
 
 if(!$stmt){
 	printf("Query Prep Failed: %s\n", $mysqli->error);
 	exit;
 }
-
 $stmt->execute();
-
 $stmt->close();
 ?>
 <p> Success! Story has been edited. Want to return back to story? <p>

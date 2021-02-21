@@ -17,7 +17,7 @@ if($_SESSION['isUser']){
 }
 
 //get all stories
-$stmt = $mysqli->prepare("SELECT username, id, title, body FROM stories");
+$stmt = $mysqli->prepare("SELECT username, id, title, body, link FROM stories");
 if(!$stmt){
 	printf("Query Prep Failed: %s\n", $mysqli->error);
 	exit;
@@ -26,7 +26,7 @@ if(!$stmt){
 
 $stmt->execute();
 
-$stmt->bind_result($author, $id, $title, $body);
+$stmt->bind_result($author, $id, $title, $body, $link);
 
 echo "<ul>\n";
 while($stmt->fetch()){
