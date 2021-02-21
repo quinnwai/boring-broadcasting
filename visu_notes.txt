@@ -1,6 +1,6 @@
-link title
-Show only stories on feed
-Reroute from title
+link title - done
+Show only stories on feed - done
+Reroute from title - done 
 Have edit and delte option in feed for stories
 Have add story option on top of feed if user
 
