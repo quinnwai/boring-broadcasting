@@ -9,11 +9,16 @@ $story_id = $_POST['story_id'];
 	die("Request forgery detected");
 }
 
+
 //// print out story ////
 
 //sql query needed
-$stmt = $mysqli->prepare("SELECT s.title, u.first_name, u.last_name, s.body, s.link FROM stories AS s JOIN users AS u ON s.username = u.username WHERE id = ?");
+$stmt = $mysqli->prepare("SELECT s.title, u.first_name, u.last_name, s.body, s.link FROM stories AS s JOIN users AS u ON s.username = u.username WHERE s.id = ?");
 $stmt->bind_param('s', $story_id);
+if(!$stmt){
+	printf("Query Prep Failed: %s\n", $mysqli->error);
+	exit;
+}
 
 // specify what results to bind before binding
 $stmt->execute();
@@ -39,7 +44,11 @@ $stmt->close();
 //// print out comments ////
 
 //get comments by story id
-$stmt = $mysqli->prepare("SELECT c.id, c.username, c.post_date, c.comment FROM stories as s JOIN comments as c ON s.id = c.story_id WHERE s.id = ?");
+$stmt = $mysqli->prepare("SELECT id, username, post_date, comment FROM comments WHERE story_id = ?");
+if(!$stmt){
+	printf("Query Prep Failed: %s\n", $mysqli->error);
+	exit;
+}
 $stmt->bind_param('s', $story_id);
 
 //store in variables
@@ -54,18 +63,22 @@ while($stmt->fetch()){
     $comment,
     substr($post_date, 5, 5));
 
+    // if($_SESSION['user_id'] == $commenter){
     ?>
-    <form action ="edit_story.php" method="POST">
-        <input type="hidden" name="comment_id" value="<?php printf($comment_id); ?>"/>
-		<input type="hidden" name="story_id" value="<?php printf($title); ?>"/>
-		<input type="hidden" name="story_id" value="<?php printf($body); ?>"/>
-		<input type="hidden" name="story_id" value="<?php printf($link); ?>"/>
-		<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
-        <input type="submit" name ="edit_story" value = "edit"/>
+    <form action ='edit_comment_form.php' method='POST'>
+    <input type='hidden' name='comment_id' value='<?php printf($comment_id); ?>'/>
+    <input type='hidden' name='comment' value='<?php printf($comment); ?>'/>
+    <input type='hidden' name='story_id' value='<?php printf($story_id); ?>'/>
+    <input type='hidden' name='token' value='<?php printf($_SESSION['token']); ?>' />
+    <input type='submit' value = 'edit'/>
+    </form>
     <?php
-
+    printf("comment id, comment, story id   |   %s, %s, %s", $comment_id, $comment, $story_id);
+    // }
 }
 
+//TODO: make sure logged in still as user rather than guest
+// (prolly need to change feed.php with authentication business)
 ?>
 <br><br>
 <p> Want to head back to the news feed?</p>
