@@ -20,12 +20,14 @@ $pwd_guess = $_POST['password'];
 
 if($cnt == 1 && password_verify($pwd_guess, $pwd_hash)){
 	// Login succeeded!
+    $isUser = true;
     printf("Welcome %s! \n <br><br>", htmlentities($user));
 	$_SESSION['user_id'] = $user_id;
 	// Redirect to your target page
 }
 
 else{
+    $isUser = false;
     ?>
     <form action="login.html">
     <p>Logged in as guest </p>
