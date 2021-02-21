@@ -8,7 +8,7 @@ require 'get_token.php';
 $user = $_SESSION['user'];
 
 $stmt = $mysqli->prepare("SELECT `last_name`, `first_name`, `password` 
-FROM `users` WHERE username = ?");
+FROM users WHERE username = ?");
 
 $stmt->bind_param('s', $user);
 
