@@ -5,8 +5,11 @@ require 'database.php';
 $comment_id = $_POST['comment_id'];
 $comment = $_POST['comment'];
 
-$stmt = $mysqli->prepare("UPDATE `comments` SET `comment`=$comment
+$stmt = $mysqli->prepare("UPDATE `comments` SET comment values (?)
  WHERE id=$comment_id");
+
+ $stmt->bind_param('s', $comment);
+
 if(!$stmt){
 	printf("Query Prep Failed: %s\n", $mysqli->error);
 	exit;
