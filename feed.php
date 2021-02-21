@@ -1,33 +1,43 @@
 <?php
-require 'database.php';
-require "authenticate.php";
+session_start();
 
-if(!hash_equals($_SESSION['token'], $_POST['token'])){
-	die("Request forgery detected");
+//activate database
+require 'database.php';
+
+//Check CSRF token if already logged in, else login (for either user or guest)
+if($_SESSION['user']){
+	require 'get_token.php';
+}
+else{
+	require "authenticate.php";
 }
 
-$stmt = $mysqli->prepare("select id, title, body, link from stories");
+if($_SESSION['isUser']){
+	printf("Welcome %s! \n <br><br>", htmlentities($_SESSION['user']));
+}
+
+//get all stories
+$stmt = $mysqli->prepare("SELECT username, id, title, body FROM stories");
 if(!$stmt){
 	printf("Query Prep Failed: %s\n", $mysqli->error);
 	exit;
 }
 
-$isUser = $_SESSION['isUser'];
 
 $stmt->execute();
 
-$stmt->bind_result($id, $title, $body, $link);
+$stmt->bind_result($author, $id, $title, $body);
 
 echo "<ul>\n";
 while($stmt->fetch()){
 	printf("\t
 	<li>Title: %s</a><br>
+	Author: %s<br>
 	Body: %s<br>
-	Link: %s<br>
 	</li>\n",
 		htmlspecialchars($title),
-		htmlspecialchars($body),
-        htmlspecialchars($link)
+		htmlspecialchars($author),
+		htmlspecialchars($body)
 	); 
 	?>
 	<div>
@@ -37,25 +47,39 @@ while($stmt->fetch()){
 		<input type="submit" name ="view_story" value = "view"/>
     </form>
 	<?php
-	if($isUser){ ?>
+	if($_SESSION['user'] == $author){ ?>
 	
 	<form action ="delete_story.php" method="POST">
         <input type="hidden" name="story_id" value="<?php printf($id); ?>"/>
 		<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
         <input type="submit" name ="delete_story" value = "delete"/>
     </form>
-    <form action ="edit_story.php" method="POST">
-        <input type="hidden" name="story_id" value="<?php printf($id); ?>"/>
-		<input type="hidden" name="story_id" value="<?php printf($title); ?>"/>
-		<input type="hidden" name="story_id" value="<?php printf($body); ?>"/>
-		<input type="hidden" name="story_id" value="<?php printf($link); ?>"/>
+    <form action="edit_story_form.php" method="POST">
+        <input type="hidden" name="id" value="<?php printf($id); ?>"/>
+		<input type="hidden" name="title" value="<?php printf($title); ?>"/>
+		<input type="hidden" name="body" value="<?php printf($body); ?>"/>
+		<input type="hidden" name="link" value="<?php printf($link); ?>"/>
 		<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
         <input type="submit" name ="edit_story" value = "edit"/>
     </form>
-</div>
-<?php 
-}
+	</div>
+	<?php 
+	}
 }
 echo "</ul>\n";
 $stmt->close();
+
+if($_SESSION['isUser']){
+	?>
+	<form action ="add_story_form.php" method="POST">
+		Add your own story! <input type="submit" name ="view_story" value = "add"/>
+	</form>
+	
+	<?php
+}	
 ?>
+
+
+<p> Return to login?</p>
+<form action="logout.php">
+<input type="submit" value = "logout"/>
