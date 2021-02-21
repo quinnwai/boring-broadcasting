@@ -84,6 +84,6 @@ if($_SESSION['isUser']){
 ?>
 
 
-<p> Return to login?</p>
+<p> Logout and return to login page?</p>
 <form action="logout.php">
 <input type="submit" value = "Logout"/>
