@@ -10,15 +10,14 @@ require 'get_token.php';
 require 'database.php';
 
 //get details to update
-$story_id = $_POST['story_id'];
+$story_id = (string)$_POST['story_id'];
 $title = (string)$_POST['title'];
 $body = (string)$_POST['body'];
 $link = (string)$_POST['link'];
 printf("story id %s, title %s, body %s, link %s <br>", $story_id, $title, $body, $link);
 
 // FVA: might want to bind params here
-$stmt = $mysqli->prepare("UPDATE stories SET title = '?', body = '?', link = '?'
-WHERE id = ?");
+$stmt = $mysqli->prepare("UPDATE stories SET title = '?', body = '?', link = '?' WHERE id = ?");
 if(!$stmt){
 	printf("Query Prep Failed: %s\n", $mysqli->error);
 	exit;
