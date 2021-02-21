@@ -27,15 +27,16 @@ while($stmt->fetch()){
 		htmlspecialchars($body),
         htmlspecialchars($link)
 	); ?>
+	<div>
 	<form action ="delete_story.php" method="POST">
         <input type="hidden" name="story_id" value="<?php printf($id); ?>"/>
-        <input type="submit" name ="delete_story"/>
+        <input type="submit" name ="delete_story" value = "delete story"/>
     </form>
     <form action ="edit_story.php" method="POST">
         <input type="hidden" name="story_id" value="<?php printf($id); ?>"/>
-        <input type="submit" name ="edit_story"/>
+        <input type="submit" name ="edit_story" value = "edit story"/>
     </form>
-
+</div>
 <?php }
 echo "</ul>\n";
 $stmt->close();
