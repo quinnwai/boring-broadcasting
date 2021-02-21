@@ -7,6 +7,10 @@ $title = $_POST['title'];
 $body = $_POST['body'];
 $link = $_POST['link'];
 
+if(!hash_equals($_SESSION['token'], $_POST['token'])){
+	die("Request forgery detected");
+}
+
 $stmt = $mysqli->prepare("UPDATE `stories` SET (title, body, link) values (?,?,?)
 WHERE id=$story_id ");
 

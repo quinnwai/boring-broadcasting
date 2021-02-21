@@ -6,6 +6,10 @@ $title = $_POST['title'];
 $body = $_POST['body'];
 $link = $_POST['link'];
 
+if(!hash_equals($_SESSION['token'], $_POST['token'])){
+	die("Request forgery detected");
+}
+
 ?>
 
 <form action ="edit_story.php" method="POST">

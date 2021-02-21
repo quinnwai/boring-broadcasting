@@ -4,6 +4,9 @@ require "database.php";
 $username = $_SESSION['username'];
 $comment = $_POST['comment'];
 $story_id = $_POST['story_id'];
+if(!hash_equals($_SESSION['token'], $_POST['token'])){
+	die("Request forgery detected");
+}
 
 $stmt = $mysqli->prepare("INSERT INTO `comments`(`username`, `comment`, `story_id`) 
 VALUES ($username,$comment,$story_id");

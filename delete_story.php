@@ -2,6 +2,9 @@
 require 'database.php';
 
 $story_id = $_POST['story_id'];
+if(!hash_equals($_SESSION['token'], $_POST['token'])){
+	die("Request forgery detected");
+}
 
 $stmt = $mysqli->prepare("DELETE FROM `stories` WHERE id = $story_id");
 if(!$stmt){

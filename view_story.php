@@ -5,6 +5,9 @@ require 'database.php';
 
 // save story_id for future use in queries
 $story_id = $_POST['story_id'];
+ if(!hash_equals($_SESSION['token'], $_POST['token'])){
+	die("Request forgery detected");
+}
 
 //// print out story ////
 

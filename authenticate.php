@@ -32,7 +32,6 @@ else{
     <form action="login.html">
     <p>Logged in as guest </p>
     <label>Try logging in as user?</label>
-    <input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
     <input type="submit" value="login" />
 </form>
 

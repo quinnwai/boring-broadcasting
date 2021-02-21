@@ -2,6 +2,10 @@
 require 'database.php';
 require "authenticate.php";
 
+if(!hash_equals($_SESSION['token'], $_POST['token'])){
+	die("Request forgery detected");
+}
+
 $stmt = $mysqli->prepare("select id, title, body, link from stories");
 if(!$stmt){
 	printf("Query Prep Failed: %s\n", $mysqli->error);

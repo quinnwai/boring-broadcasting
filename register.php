@@ -18,6 +18,10 @@ $first_name = (string) $_POST['first_name'];
 $last_name = (string) $_POST['last_name'];
 $password = (string) $_POST['password'];
 
+if(!hash_equals($_SESSION['token'], $_POST['token'])){
+	die("Request forgery detected");
+}
+
 
 //// 1: Validate Username ////
 //read from the users table

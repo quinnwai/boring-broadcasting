@@ -2,6 +2,10 @@
 //get details to display before update
 $comment_id = $_POST['comment_id'];
 $comment = $_POST['comment'];
+
+if(!hash_equals($_SESSION['token'], $_POST['token'])){
+	die("Request forgery detected");
+}
 ?>
 
 <form action ="edit_comment.php" method="POST">
