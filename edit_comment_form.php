@@ -1,4 +1,5 @@
 <?php
+//get details to display before update
 $comment_id = $_POST['comment_id'];
 $comment = $_POST['comment'];
 ?>

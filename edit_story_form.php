@@ -1,5 +1,6 @@
 <?php
 
+//get details to display before update
 $story_id = $_POST['story_id'];
 $title = $_POST['title'];
 $body = $_POST['body'];

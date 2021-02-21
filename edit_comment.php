@@ -1,6 +1,7 @@
 <?php
 require 'database.php';
 
+//get details to update
 $comment_id = $_POST['comment_id'];
 $comment = $_POST['comment'];
 

@@ -1,6 +1,7 @@
 <?php
 require 'database.php';
 
+//get details to update
 $story_id = $_POST['story_id'];
 $title = $_POST['title'];
 $body = $_POST['body'];
