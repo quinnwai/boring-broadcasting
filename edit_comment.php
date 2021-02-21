@@ -3,14 +3,14 @@ session_start();
 
 require 'database.php';
 
+//CSRF token validation
+require 'get_token.php';
+
 //get details to update
 $comment_id = (int)$_POST['comment_id'];
 $comment = (string)$_POST['comment'];
 $story_id = (string)$_POST['story_id'];
 // printf("story id is: %s", $story_id);
-
-//CSRF token validation
-require 'get_token.php';
 
 $stmt = $mysqli->prepare("UPDATE comments SET comment = ? WHERE id = ?");
 if(!$stmt){
@@ -23,6 +23,7 @@ $stmt->bind_param('ss', $comment, $comment_id);
 $stmt->execute();
 $stmt->close();
 
+// header("location: feed.php");
 // TODO: change to form because not view_story stuff
 ?>
 <p> Success! Comment has been changed. Want to return back to story? <p>

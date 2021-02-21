@@ -26,6 +26,7 @@ if($cnt == 1 && password_verify($pwd_guess, $pwd_hash)){
 else{
     $_SESSION['user'] = "";
     $_SESSION['isUser'] = false;
+    $_SESSION['token'] = bin2hex(random_bytes(32));
     ?>
     <form action="login.html">
     <p>Logged in as guest </p>
