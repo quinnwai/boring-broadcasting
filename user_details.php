@@ -18,7 +18,7 @@ if(!$stmt){
 }
 
 $stmt->execute();
-$stmt->bind_result($first, $last, $password);
+$stmt->bind_result($last, $first, $password);
 
 $stmt->close();
 
