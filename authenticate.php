@@ -20,14 +20,14 @@ $pwd_guess = $_POST['password'];
 
 if($cnt == 1 && password_verify($pwd_guess, $pwd_hash)){
 	// set user_id, CSRF token, and boolean value for later reference
-    $isUser = true;
 	$_SESSION['user_id'] = $user_id;
+    $_SESSION['isUser'] = true;
     $_SESSION['token'] = bin2hex(random_bytes(32));
 
     printf("Welcome %s! \n <br><br>", htmlentities($user));
 }
 else{
-    $isUser = false;
+    $_SESSION['isUser'] = false;
     ?>
     <form action="login.html">
     <p>Logged in as guest </p>

@@ -8,6 +8,8 @@ if(!$stmt){
 	exit;
 }
 
+$isUser = $_SESSION['isUser'];
+
 $stmt->execute();
 
 $stmt->bind_result($id, $title, $body, $link);
