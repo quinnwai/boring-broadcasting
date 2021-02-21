@@ -1,15 +1,14 @@
 <?php
 //get details to display before update
+session_start();
 
-if(!hash_equals($_SESSION['token'], $_POST['token'])){
-	die("Request forgery detected");
-}
+
+//CSRF token validation
+require 'get_token.php';
 
 $comment_id = (int)$_POST['comment_id'];
 $comment = (string)$_POST['comment'];
 $story_id = (string)$_POST['story_id'];
-printf("post story id is: %s <br>", $story_id);
-
 ?>
 
 <form action ="edit_comment.php" method="POST">

@@ -1,13 +1,14 @@
 <?php
+session_start();
+
+//CSRF token validation
+require 'get_token.php';
 
 //activate database
 require 'database.php';
 
 // save story_id for future use in queries
 $story_id = $_POST['story_id'];
- if(!hash_equals($_SESSION['token'], $_POST['token'])){
-	die("Request forgery detected");
-}
 
 
 //// print out story ////
@@ -63,7 +64,7 @@ while($stmt->fetch()){
     $comment,
     substr($post_date, 5, 5));
 
-    // if($_SESSION['user_id'] == $commenter){
+    if($_SESSION['user'] == $commenter){
     ?>
     <form action ='edit_comment_form.php' method='POST'>
     <input type='hidden' name='comment_id' value='<?php printf($comment_id); ?>'/>
@@ -73,8 +74,8 @@ while($stmt->fetch()){
     <input type='submit' value = 'edit'/>
     </form>
     <?php
-    printf("comment id, comment, story id   |   %s, %s, %s", $comment_id, $comment, $story_id);
-    // }
+    // printf("comment id, comment, story id   |   %s, %s, %s", $comment_id, $comment, $story_id);
+    }
 }
 
 //TODO: make sure logged in still as user rather than guest
@@ -82,6 +83,6 @@ while($stmt->fetch()){
 ?>
 <br><br>
 <p> Want to head back to the news feed?</p>
-<form action="feed.php">
+<form action="feed.php" method="POST">
 <input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
 <input type="submit" value="return" />

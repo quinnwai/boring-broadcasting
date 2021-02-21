@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require 'database.php';
 
 //get details to update
@@ -7,9 +9,8 @@ $comment = (string)$_POST['comment'];
 $story_id = (string)$_POST['story_id'];
 // printf("story id is: %s", $story_id);
 
-if(!hash_equals($_SESSION['token'], $_POST['token'])){
-	die("Request forgery detected");
-}
+//CSRF token validation
+require 'get_token.php';
 
 $stmt = $mysqli->prepare("UPDATE comments SET comment = ? WHERE id = ?");
 if(!$stmt){

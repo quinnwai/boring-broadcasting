@@ -1,5 +1,10 @@
 <?php
+session_start();
 
+//CSRF token validation
+require 'get_token.php';
+
+// FVA: Test add story method!
 if(!hash_equals($_SESSION['token'], $_POST['token'])){
 	die("Request forgery detected");
 }

@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+// FVA: edit story_form works, but redirect to here doesn't
+
+//CSRF token validation
+require 'get_token.php';
+
+//activate database
 require 'database.php';
 
 //get details to update
@@ -7,10 +15,7 @@ $title = $_POST['title'];
 $body = $_POST['body'];
 $link = $_POST['link'];
 
-if(!hash_equals($_SESSION['token'], $_POST['token'])){
-	die("Request forgery detected");
-}
-
+// FVA: might want to bind params here
 $stmt = $mysqli->prepare("UPDATE `stories` SET (title, body, link) values (?,?,?)
 WHERE id=$story_id ");
 
