@@ -14,12 +14,17 @@ $story_id = $_POST['story_id'];
 $title = (string)$_POST['title'];
 $body = (string)$_POST['body'];
 $link = (string)$_POST['link'];
+printf("story id %s, title %s, body %s, link %s <br>", $story_id, $title, $body, $link);
 
 // FVA: might want to bind params here
-$stmt = $mysqli->prepare("UPDATE `stories` SET title = ?, body = ?, link = ?
+$stmt = $mysqli->prepare("UPDATE stories SET title = '?', body = '?', link = '?'
 WHERE id = ?");
+if(!$stmt){
+	printf("Query Prep Failed: %s\n", $mysqli->error);
+	exit;
+}
 
-$stmt->bind_param('sssi', $title, $body, $link, $story_id);
+$stmt->bind_param('ssss', $title, $body, $link, $story_id);
 
 if(!$stmt){
 	printf("Query Prep Failed: %s\n", $mysqli->error);

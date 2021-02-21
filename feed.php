@@ -55,7 +55,7 @@ while($stmt->fetch()){
         <input type="submit" name ="delete_story" value = "delete"/>
     </form>
     <form action="edit_story_form.php" method="POST">
-        <input type="hidden" name="id" value="<?php printf($id); ?>"/>
+        <input type="hidden" name="story_id" value="<?php printf($id); ?>"/>
 		<input type="hidden" name="title" value="<?php printf($title); ?>"/>
 		<input type="hidden" name="body" value="<?php printf($body); ?>"/>
 		<input type="hidden" name="link" value="<?php printf($link); ?>"/>

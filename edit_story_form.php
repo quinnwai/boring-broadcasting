@@ -9,6 +9,7 @@ $story_id = $_POST['story_id'];
 $title = $_POST['title'];
 $body = $_POST['body'];
 $link = $_POST['link'];
+printf("this is in fact story %s", $story_id);
 
 //allow user to change their information
 ?>
