@@ -5,7 +5,7 @@
 $stmt = $mysqli->prepare("SELECT COUNT(*), password FROM users WHERE username=?");
 
 // Bind the parameter (? becomes $username)
-$user = strtolower($_POST['username']);
+$user = strtolower((string)($_POST['username']));
 $stmt->bind_param('s', $user);
 $stmt->execute();
 
@@ -13,7 +13,7 @@ $stmt->execute();
 $stmt->bind_result($cnt, $pwd_hash);
 $stmt->fetch();
 
-$pwd_guess = $_POST['password'];
+$pwd_guess = (string)$_POST['password'];
 // Compare the submitted password to the actual password hash
 
 

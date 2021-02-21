@@ -50,7 +50,7 @@ if($username == "" || $first_name == "" || $last_name == "" || $password == ""){
     printf("Login failed. Please fill out all of the information in the boxes. <br>");
 }
 else if($is_user){
-    printf("The username %s already exists! Please resubmit the form. <br>", $username);
+    printf("The username %s already exists! Please resubmit the form. <br>", htmlentities($username));
 }
 else {
     //else store all user data in new row
