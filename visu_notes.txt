@@ -2,6 +2,7 @@ link title
 Show only stories on feed
 Reroute from title
 Have edit and delte option in feed for stories
+Have add story option on top of feed if user
 
 A page for story.php
 Have edit and delte comments in this page

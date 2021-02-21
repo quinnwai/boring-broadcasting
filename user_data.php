@@ -1,11 +1,10 @@
-<?php
+<!-- <?php
 require "database.php";
 
+$username = $_SESSION["username"];
 
-$stmt = $mysqli->prepare("select id,title, body, link, 
-comments.comment, comments.post_date from stories 
-join comments on (comments.story_id = stories.id)
-Group by story_id");
+$story_stmt = $mysqli->prepare("SELECT `id`, `username`, `title`, `body`, `link`,
+FROM `stories` WHERE username=$username");
 if(!$stmt){
 	printf("Query Prep Failed: %s\n", $mysqli->error);
 	exit;
@@ -56,4 +55,4 @@ while($stmt->fetch()){
 echo "</ul>\n";
 $stmt->close();
 
-?>
+?> -->

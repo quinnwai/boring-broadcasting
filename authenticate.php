@@ -24,6 +24,7 @@ if($cnt == 1 && password_verify($pwd_guess, $pwd_hash)){
 	$_SESSION['user_id'] = $user_id;
 	// Redirect to your target page
 }
+
 else{
     ?>
     <form action="login.html">
@@ -34,6 +35,7 @@ else{
 
 <?php
 }
+$stmt->close();
 
 // //// 0: Setup ////
 // $is_user = false;
