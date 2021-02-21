@@ -34,6 +34,9 @@ while($stmt->fetch()){
     </form>
     <form action ="edit_story.php" method="POST">
         <input type="hidden" name="story_id" value="<?php printf($id); ?>"/>
+		<input type="hidden" name="story_id" value="<?php printf($title); ?>"/>
+		<input type="hidden" name="story_id" value="<?php printf($body); ?>"/>
+		<input type="hidden" name="story_id" value="<?php printf($link); ?>"/>
         <input type="submit" name ="edit_story" value = "edit story"/>
     </form>
 </div>
