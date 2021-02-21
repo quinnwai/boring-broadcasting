@@ -21,12 +21,22 @@ while($stmt->fetch()){
 	printf("\t
 	<li>Title: <a href='user_data.php#targetanchor'>%s</a><br>
 	Body: %s <br>
-	Link: %s<br></li>\n",
+	Link: %s<br>
+	</li>\n",
 		htmlspecialchars($title),
 		htmlspecialchars($body),
         htmlspecialchars($link)
-	);
-}
+	); ?>
+	<form action ="delete_story.php" method="POST">
+        <input type="hidden" name="story_id" value="<?php printf($id); ?>"/>
+        <input type="submit" name ="delete_story"/>
+    </form>
+    <form action ="edit_story.php" method="POST">
+        <input type="hidden" name="story_id" value="<?php printf($id); ?>"/>
+        <input type="submit" name ="edit_story"/>
+    </form>
+
+<?php }
 echo "</ul>\n";
 $stmt->close();
 
