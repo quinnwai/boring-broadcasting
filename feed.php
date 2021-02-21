@@ -72,10 +72,13 @@ $stmt->close();
 if($_SESSION['isUser']){
 	?>
 	<form action ="add_story_form.php" method="POST">
-		Add your own story! <input type="submit" name ="view_story" value = "add"/>
+		Add your own story! <input type="submit" name ="add_story" value = "add"/>
 	<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
 	</form>
-	
+	<form action ="user_details.php" method="POST">
+		Go to your profile page <input type="submit" name ="view_details" value = "add"/>
+	<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
+	</form>
 	<?php
 }	
 ?>
