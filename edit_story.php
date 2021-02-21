@@ -29,7 +29,8 @@ if(!$stmt){
 $stmt->execute();
 
 $stmt->close();
-
-header("location: feed.php");
-
 ?>
+<p> Success! Story has been edited. Want to return back to story? <p>
+<form action ="feed.php" method="POST">
+<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
+<input type="submit" value="return" />

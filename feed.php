@@ -73,6 +73,7 @@ if($_SESSION['isUser']){
 	?>
 	<form action ="add_story_form.php" method="POST">
 		Add your own story! <input type="submit" name ="view_story" value = "add"/>
+	<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
 	</form>
 	
 	<?php

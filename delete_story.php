@@ -1,10 +1,9 @@
 <?php
+session_start();
 require 'database.php';
+require 'get_token.php';
 
 $story_id = $_POST['story_id'];
-if(!hash_equals($_SESSION['token'], $_POST['token'])){
-	die("Request forgery detected");
-}
 
 $stmt = $mysqli->prepare("DELETE FROM `stories` WHERE id = $story_id");
 if(!$stmt){
@@ -19,5 +18,8 @@ $stmt->execute();
 $stmt->close();
 
 // TODO: if this doesn't work, use form because of CSRF stuff and include hidden var as seen in feed
-header("location: feed.php");
 ?>
+<p> Success! Story has been deleted. Want to return back to story? <p>
+<form action ="feed.php" method="POST">
+<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
+<input type="submit" value="return" />
