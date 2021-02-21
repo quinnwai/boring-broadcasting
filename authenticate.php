@@ -3,55 +3,75 @@ session_start();
 
 // IMPORTANT: Always use authenticate after using database.php so there is access to the tables //
 
-// TODO: 
-//// 0: Setup ////
-$is_user = false;
+// Use a prepared statement
+$stmt = $mysqli->prepare("SELECT COUNT(*), password FROM users WHERE username=?");
 
-//read in login info
-$username = strtolower((string) $_POST['username']);
-// $hash = password_hash((string) $_POST['password']);
-$password = (string) $_POST['password'];
-$hash = password_hash($password, PASSWORD_DEFAULT);
-printf("username is %s \n", htmlentities($username));
-printf("password is %s \n", htmlentities($password));
-printf("hash is %s \n <br><br>", $hash);
-
-//// 1: Validate Username ////
-//read from the users table
-$stmt = $mysqli->prepare("select username, password from users");
-if(!$stmt){
-	printf("Query Prep Failed: %s\n", $mysqli->error);
-	exit;
-}
-
+// Bind the parameter (? becomes $username)
+$user = strtolower($_POST['username']);
+$stmt->bind_param('s', $user);
 $stmt->execute();
-$stmt->bind_result($username_db, $hash_db);
 
-//for each username (row) in db, check if username already exists
-while($stmt->fetch()){
-    printf("comparing user %s to %s which is %d \n", htmlentities($username), htmlentities($username_db), htmlentities($username == strtolower($username_db)));
-    printf("comparing hash %s to %s which is %d \n ", $hash, $hash_db, htmlentities($hash == $hash_db));
-    printf("total truth value is %d \n <br><br>", htmlentities($username == strtolower($username_db) && $hash == $hash_db));
-    if ($username == strtolower($username_db) && strcmp($hash, $hash_db) == 0){
-        $is_user = true;
-        $_SESSION['username'] = $username;
-        printf("setting isUser to true!!");
-        break;
-    }
-}; 
-$stmt->close();
+// Bind the results
+$stmt->bind_result($cnt, $pwd_hash);
+$stmt->fetch();
 
+$pwd_guess = $_POST['password'];
+// Compare the submitted password to the actual password hash
 
-if(!$is_user){
-    //printf("Incorrect username or password \n");
-    ?>
-
-    <form action="login.html">
-        <p>Logged in as guest </p>
-        <label>Try logging in as user?</label>
-        <input type="submit" value="login" />
-    </form>
-    
-    <?php
+if($cnt == 1 && password_verify($pwd_guess, $pwd_hash)){
+	// Login succeeded!
+    printf("Welcome %s! \n <br><br>", htmlentities($user));
+	$_SESSION['user_id'] = $user_id;
+	// Redirect to your target page
 }
-?>
+else{
+    ?>
+    <form action="login.html">
+    <p>Logged in as guest </p>
+    <label>Try logging in as user?</label>
+    <input type="submit" value="login" />
+</form>
+
+<?php
+}
+
+// //// 0: Setup ////
+// $is_user = false;
+
+// //read in login info
+// $username = strtolower((string) $_POST['username']);
+// // $hash = password_hash((string) $_POST['password']);
+// $pwd = (string) $_POST['password'];
+// printf("username is %s \n", htmlentities($username));
+// printf("password is %s \n", htmlentities($password));
+// printf("hash is %s \n <br><br>", $hash);
+
+// //// 1: Validate Username ////
+// //read from the users table
+// $stmt = $mysqli->prepare("select username, password from users");
+// if(!$stmt){
+// 	printf("Query Prep Failed: %s\n", $mysqli->error);
+// 	exit;
+// }
+
+// $stmt->execute();
+// $stmt->bind_result($username_db, $hash_db);
+
+// //for each username (row) in db, check if username already exists
+// while($stmt->fetch()){
+//     printf("comparing user %s to %s which is %d \n", htmlentities($username), htmlentities($username_db), htmlentities($username == strtolower($username_db)));
+//     printf("comparing hash %s to %s which is %d \n ", $hash, $hash_db, htmlentities($hash == $hash_db));
+//     printf("total truth value is %d \n <br><br>", htmlentities($username == strtolower($username_db) && $hash == $hash_db));
+//     if ($username == strtolower($username_db) && password_verify($password, $hash_db)){
+//         $is_user = true;
+//         $_SESSION['username'] = $username;
+//         printf("setting isUser to true!!");
+//         break;
+//     }
+// }; 
+// $stmt->close();
+
+
+// if(!$is_user){
+//     //printf("Incorrect username or password \n");
+//     ?>

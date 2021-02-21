@@ -2,10 +2,7 @@
 require 'database.php';
 require "authenticate.php";
 
-$stmt = $mysqli->prepare("select id,title, body, link, 
-comments.comment, comments.post_date from stories 
-join comments on (comments.story_id = stories.id)
-Group by story_id");
+$stmt = $mysqli->prepare("select s.id, s.title, s.body, s.link, c.comment, c.post_date from stories as s join comments as c on c.story_id = s.id");
 if(!$stmt){
 	printf("Query Prep Failed: %s\n", $mysqli->error);
 	exit;
