@@ -4,6 +4,10 @@ Reroute from title - done
 Have edit and delte option in feed for stories
 Have add story option on top of feed if user
 
+Need to have logout function
+Add time posted for commnts?
+Way to add stories from feed
+
 CSRF token shit wherever there's a form yo
 
 A page for story.php
