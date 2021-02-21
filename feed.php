@@ -76,7 +76,7 @@ if($_SESSION['isUser']){
 	<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
 	</form>
 	<form action ="user_details.php" method="POST">
-		Go to your profile page <input type="submit" name ="view_details" value = "add"/>
+		Go to your profile page <input type="submit" name ="view_details" value = "View profile page"/>
 	<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
 	</form>
 	<?php
