@@ -13,6 +13,7 @@ $link = $_POST['link'];
     <input type="text" name="title" value="<?php printf($title); ?>"/>
     <input type="text" name="body" value="<?php printf($body); ?>"/>
     <input type="text" name="link" value="<?php printf($link); ?>"/>
+    <input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
     <input type="submit" name ="edit_story"/>
 </form>
 

@@ -19,19 +19,20 @@ $pwd_guess = $_POST['password'];
 // Compare the submitted password to the actual password hash
 
 if($cnt == 1 && password_verify($pwd_guess, $pwd_hash)){
-	// Login succeeded!
+	// set user_id, CSRF token, and boolean value for later reference
     $isUser = true;
-    printf("Welcome %s! \n <br><br>", htmlentities($user));
 	$_SESSION['user_id'] = $user_id;
-	// Redirect to your target page
-}
+    $_SESSION['token'] = bin2hex(random_bytes(32));
 
+    printf("Welcome %s! \n <br><br>", htmlentities($user));
+}
 else{
     $isUser = false;
     ?>
     <form action="login.html">
     <p>Logged in as guest </p>
     <label>Try logging in as user?</label>
+    <input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
     <input type="submit" value="login" />
 </form>
 
