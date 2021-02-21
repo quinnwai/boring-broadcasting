@@ -1,0 +1,31 @@
+link title
+Show only stories on feed
+Reroute from title
+Have edit and delte option in feed for stories
+
+A page for story.php
+Have edit and delte comments in this page
+
+SQL commands - Qw
+Qw - story.php, edit, delete comment
+PHP shit (edit, delete, feed for stories) - Visu
+Change sql command in feed - Visu
+
+
+OH questions
+yo whats up w/ CSRF shiz yo
+authenticate
+creative portion
+  - search bar
+  - images
+  - uploads and downloads 
+
+  he said some upvotes shit. 
+  another column
+  hit go
+  name uploads
+  255 length/values
+  default null
+  we dont care abt that either, not that no, we dont care.
+
+  some easy dropdown shit. create categories for stories and make a dropdown.
