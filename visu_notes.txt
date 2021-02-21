@@ -7,12 +7,6 @@ Have add story option on top of feed if user
 A page for story.php
 Have edit and delte comments in this page
 
-SQL commands - Qw
-Qw - story.php, edit, delete comment
-PHP shit (edit, delete, feed for stories) - Visu
-Change sql command in feed - Visu
-
-
 OH questions
 yo whats up w/ CSRF shiz yo
 authenticate
