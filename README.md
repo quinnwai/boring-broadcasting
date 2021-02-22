@@ -11,6 +11,8 @@ Username: qwong
 
 Password: quinniewaiwai
 
+You can always register your own user too :)
+
 ## Creative Portion: 
 Created a seperate SQL table called upvotes. Stories can be upvoted and sorted by the number of upvotes they have on the feed. Ensures only registered users can upvote and only one upvote is allowed per user. Feed sorts news articles based on upvotes to show the most relevant/popular articles first. Delete story removes associated upvotes and comments before deleting story to ensure there is no excess garbage data.
 
