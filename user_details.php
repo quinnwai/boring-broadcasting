@@ -84,19 +84,17 @@ $stmt2->bind_result($id, $title, $body, $link);
 ?>
 
 <h2>Your Stories </h2>
-
+<ul>
 <?php
-echo "<ul>\n";
+// echo "<ul>\n";
 while($stmt2->fetch()){
 	printf("\t
-	<li>Title: %s</a><br>
-	Body: %s<br>
-	</li>\n",
+	<li>Title: %s<br>
+	Body: %s<br>",
 		htmlspecialchars($title),
 		htmlspecialchars($body)
 	); 
 	?>
-	<div>
 	<form class="row" action ="view_story.php" method="POST">
         <input type="hidden" name="story_id" value="<?php printf($id); ?>"/>
         <input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
@@ -117,12 +115,13 @@ while($stmt2->fetch()){
 		<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
         <input type="submit" name ="delete_story" value = "delete"/>
     </form>
-	</div>
 	<?php 
+	printf("</li>\n");
 }
-echo "</ul>\n";
+// echo "</ul>\n";
 $stmt2->close();
 
 ?>
+</ul>
 </body> 
 </html>
