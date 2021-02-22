@@ -14,12 +14,18 @@ Password: quinniewaiwai
 You can always register your own user too :)
 
 ## Creative Portion: 
-Created a seperate SQL table called upvotes. Stories can be upvoted and sorted by the number of upvotes they have on the feed. Ensures only registered users can upvote and only one upvote is allowed per user. Feed sorts news articles based on upvotes to show the most relevant/popular articles first. Delete story removes associated upvotes and comments before deleting story to ensure there is no excess garbage data.
+Upvotes:
+ * Allows stories to be upvoted 
+ * Used JOIN, GROUP BY, and ORDER BY to sort news articles on the feed by popularity (based on upvote)
+ * Ensures only registered users can upvote and only one upvote is allowed per user.
+ * Delete story removes associated upvotes and comments before deleting story to ensure there is no extraneous data.
 
-Added user_details page which stores and displays only the stories the user has posted. The user is able to view/edit/delete his stories from his profile page as well as the news feed directly. The user is shown details about his profile such as registered name and username and is able to logout directly from this page as well. 
+User Profile Page:
+ * Added a user profile (user_details) page which stores and displays the stories the user have posted.
+ * The user is able to view,edit, and delete his stories from his profile page as well as the news feed directly.
+ * The user is shown details about his profile such as registered name and username and can logout directly from this page as well. 
+ * Here, user can also change password which updates the SQL table accordingly.
 
-Added option to be able to change password which updates the sql table accordingly and stores the new password.
-
-Added functionality for being able to navigate to feed and logout from various pages for ease of use
-
-
+More Functionality
+ * Added functionality for being able to navigate to feed and logout from various pages for ease of use.
+ * Ensured that added and edited stories/comments have relevant data filled out before storing into the database (eg comment, body, title)
