@@ -2,10 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>Newsfeed</title>
+    <title>Individual Story View</title>
 	<link rel="stylesheet" type="text/css" href="stylesheet.css"/>
 </head>
 <body>
+<div id="box">
+	<h1>BBC News</h1>
+</div>
+
+<div>
 <?php
 session_start();
 
@@ -40,13 +45,13 @@ printf("
 <h1>%s</h1>
 <p>By %s %s</p>
 <p>%s<br></p>
-<a href=%s>Link</a> to the original article <br></p>
+(<a href=%s>Link</a> to the original article) <br></p>
 \n",
-htmlspecialchars($title),
-htmlspecialchars($first_name),
-htmlspecialchars($last_name),
-htmlspecialchars($body),
-htmlspecialchars($link)
+htmlentities($title),
+htmlentities($first_name),
+htmlentities($last_name),
+htmlentities($body),
+htmlentities($link)
 );
 
 //// print out upvotes ////
@@ -70,13 +75,10 @@ $stmt->close();
     <input type='hidden' name='token' value='<?php printf($_SESSION['token']); ?>' />
     <?php printf(htmlentities($num_upvotes)); ?> <input type='submit' value = '&#8679;'/>
 </form>
+</div>
 
-<form action ="add_comment.php" method="POST">
-    <label>Comment: <input type="text" name="comment" /></label>
-    <input type="hidden" name="token" value="<?php printf($_SESSION['token']);?>" />
-    <input type="hidden" name="story_id" value="<?php printf($story_id);?>" />
-    <input type="submit" name ="add_comment"/>
-</form>
+<div>
+<h1>Comments</h1>
 <?php
 
 
@@ -100,7 +102,7 @@ while($stmt->fetch()){
     \n",
     $commenter,
     $comment,
-    substr($post_date, 5, 5));
+    substr($post_date, 0, -3));
 
     if($_SESSION['user'] == $commenter){
     ?>
@@ -120,15 +122,22 @@ while($stmt->fetch()){
     <?php
     }
 }
-
-//TODO: make sure logged in still as user rather than guest
-// (prolly need to change feed.php with authentication business)
 ?>
-<br><br>
+<br>
+<form action ="add_comment.php" method="POST">
+    <label>Add a new comment: <input type="text" name="comment" /></label>
+    <input type="hidden" name="token" value="<?php printf($_SESSION['token']);?>" />
+    <input type="hidden" name="story_id" value="<?php printf($story_id);?>" />
+    <input type="submit" name ="add_comment"/>
+</form>
+</div>
+
+<div>
 <p> Want to head back to the news feed?</p>
 <form action="feed.php" method="POST">
 <input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
 <input type="submit" value="return" />
 </form>
+</div>
 </body> 
 </html>

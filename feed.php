@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +6,11 @@
 	<link rel="stylesheet" type="text/css" href="stylesheet.css"/>
 </head>
 <body>
+<div id="box">
+	<h1>BBC News</h1>
+</div>
+
+<div>
 <?php
 session_start();
 
@@ -19,7 +23,8 @@ if($_SESSION['isUser']){
 }
 
 //get all stories
-$stmt = $mysqli->prepare("SELECT s.username, s.id, s.title, s.body, s.link, COUNT(u.username) AS number_of_upvotes FROM stories AS s LEFT JOIN upvotes AS u ON u.story_id = s.id GROUP BY s.id");
+$stmt = $mysqli->prepare("SELECT s.username, s.id, s.title, COUNT(u.username) AS number_of_upvotes
+FROM stories AS s LEFT JOIN upvotes AS u ON u.story_id = s.id GROUP BY s.id ORDER BY number_of_upvotes DESC");
 if(!$stmt){
 	printf("Query Prep Failed: %s\n", $mysqli->error);
 	exit;
@@ -28,19 +33,21 @@ if(!$stmt){
 
 $stmt->execute();
 
-$stmt->bind_result($author, $id, $title, $body, $link, $upvotes);
+$stmt->bind_result($author, $story_id, $title, $upvotes);
 
-
+//provide option for users to add stories or view user details
 if($_SESSION['isUser']){
 	?>
 	<form action ="add_story_form.php" method="POST">
 		Add your own story! <input type="submit" name ="add_story" value = "Add"/>
 	<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
-	</form>
+	</form><br>
+
 	<form action ="user_details.php" method="POST">
 		Go to your profile page <input type="submit" name ="view_details" value = "View profile page"/>
 	<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
 	</form>
+	<br>
 	<?php
 }
 else {
@@ -50,26 +57,24 @@ else {
 <form action="logout.php">
 Logout and return to sign in page? <input type="submit" value = "Logout"/>
 </form>
+</div>
 
-<h2> Stories from your news feed: </h2>
+<h2> Stories from your News Feed: </h2>
+<div>
+<ul>
 <?php
-echo "<ul>\n";
 while($stmt->fetch()){
 	printf("\t
 	<li>Title: %s</a><br>
 	Author: %s<br>
-	Body: %s<br>
-	Upvotes: %s<br>
-	</li>\n",
-		htmlspecialchars($title),
-		htmlspecialchars($author),
-		htmlspecialchars($body),
-		htmlspecialchars($upvotes)
+	Upvotes: %s<br>",
+	htmlentities($title),
+	htmlentities($author),
+	htmlentities($upvotes)
 	); 
 	?>
-	<div>
 	<form class = "row" action ="view_story.php" method="POST">
-        <input type="hidden" name="story_id" value="<?php printf($id); ?>"/>
+        <input type="hidden" name="story_id" value="<?php printf($story_id); ?>"/>
         <input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
 		<input type="submit" name ="view_story" value = "view"/>
     </form>
@@ -77,7 +82,7 @@ while($stmt->fetch()){
 	<?php
 	if($_SESSION['user'] == $author){ ?>
 	<form class = "row" action="edit_story_form.php" method="POST">
-        <input type="hidden" name="story_id" value="<?php printf($id); ?>"/>
+        <input type="hidden" name="story_id" value="<?php printf($story_id); ?>"/>
 		<input type="hidden" name="title" value="<?php printf($title); ?>"/>
 		<input type="hidden" name="body" value="<?php printf($body); ?>"/>
 		<input type="hidden" name="link" value="<?php printf($link); ?>"/>
@@ -86,16 +91,18 @@ while($stmt->fetch()){
     </form>
 
 	<form class = "row" action ="delete_story.php" method="POST">
-        <input type="hidden" name="story_id" value="<?php printf($id); ?>"/>
+        <input type="hidden" name="story_id" value="<?php printf($story_id); ?>"/>
 		<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
         <input type="submit" name ="delete_story" value = "delete"/>
     </form>
-	</div>
+	
 	<?php 
+	printf("</li>\n");
 	}
 }
-echo "</ul>\n";
 $stmt->close();
 ?>
+</ul>
+</div>
 </body> 
 </html>

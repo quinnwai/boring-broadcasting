@@ -1,3 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Add Comment</title>
+	<link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+</head>
+<body>
+<div id="box">
+	<h1>BBC News</h1>
+</div>
+<h2> Add Comment </h2>
+
+<div>
 <?php
 session_start();
 
@@ -30,4 +44,6 @@ $stmt->close();
 <input type="hidden" name="story_id" value="<?php printf($story_id); ?>"/>
 <input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
 <input type="submit" value="return" />
-
+</div>
+</body> 
+</html>

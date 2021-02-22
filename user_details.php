@@ -2,10 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>Newsfeed</title>
+    <title>User Details</title>
 	<link rel="stylesheet" type="text/css" href="stylesheet.css"/>
 </head>
 <body>
+<div id="box">
+	<h1>BBC News</h1>
+</div>
+
 <?php
 session_start();
 
@@ -29,7 +33,7 @@ $stmt->bind_result($last, $first);
 
 
 printf("<h2> Welcome %s! \n </h2>", htmlentities($_SESSION['user']));
-echo "Please find here your name according to our records: ";
+echo "Full name: ";
 
 // echo "<ul>\n";
 while($stmt->fetch()){
@@ -41,22 +45,27 @@ while($stmt->fetch()){
 // echo "</ul>\n";
 
 ?>
+<div>
 <p> Want to change your password? </p>
 <form action="change_password.php" method="POST">
 <input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
 <label>New Password: <input type="password" name="pwd"/> </label>
 <input type="submit" value="return" />
 </form>
+</div>
 
-
+<div>
 <form action="feed.php" method="POST">
 <input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
 Want to head back to the news feed?: <input type="submit" value="Go to News Feed" />
 </form>
+</div>
 
+<div>
 <form action="logout.php">
 Logout and return to sign in page? <input type="submit" value = "Logout"/>
 </form>
+</div>
 
 <?php
 $stmt->close();
@@ -74,7 +83,7 @@ $stmt2->execute();
 $stmt2->bind_result($id, $title, $body, $link);
 ?>
 
-<h2>View all the stories you have posted here </h2>
+<h2>Your Stories </h2>
 
 <?php
 echo "<ul>\n";

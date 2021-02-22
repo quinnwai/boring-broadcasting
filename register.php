@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="utf-8"/>
     <title>New User Registration</title>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
 </head>
 <body>
+<div id="box">
+	<h1>BBC News</h1>
+</div>
+
 <?php 
 session_start();
 

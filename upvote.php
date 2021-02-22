@@ -3,8 +3,13 @@
 <head>
     <meta charset="utf-8"/>
     <title>Upvote</title>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
 </head>
 <body>
+<div id="box">
+	<h1>BBC News</h1>
+</div>
+
 <?php
 session_start();
 

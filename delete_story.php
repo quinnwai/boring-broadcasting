@@ -1,3 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Delete Story</title>
+	<link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+</head>
+<body>
+<div id="box">
+	<h1>BBC News</h1>
+</div>
+<h2>Delete Story</h2>
 <?php
 session_start();
 require 'database.php';
@@ -11,7 +23,7 @@ if(!$stmt){
 	exit;
 }
 
-$stmt->bind_param('i', $story_id);
+$stmt->bind_param('s', $story_id);
 
 $stmt->execute();
 
@@ -23,3 +35,5 @@ $stmt->close();
 <form action ="feed.php" method="POST">
 <input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
 <input type="submit" value="return" />
+</body> 
+</html>

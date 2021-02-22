@@ -1,3 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Edit Comment Form</title>
+	<link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+</head>
+<body>
+<div id="box">
+	<h1>BBC News</h1>
+</div>
+
 <?php
 //get details to display before update
 session_start();
@@ -19,3 +31,5 @@ $story_id = (int)$_POST['story_id'];
     <input type="submit" value ="edit"/>
 </form>
 
+</body> 
+</html>
