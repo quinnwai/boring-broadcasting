@@ -8,10 +8,11 @@ Link to Site: http://ec2-18-219-113-131.us-east-2.compute.amazonaws.com/~qwong/m
 
 ## Login Details: 
 Username: qwong
+
 Password: quinniewaiwai
 
 ## Creative Portion: 
-Created a seperate SQL table called upvotes. Stories can be upvoted and sorted by the number of upvotes they have on the feed. Ensures only registered users can upvote and only one upvote is allowed per user.
+Created a seperate SQL table called upvotes. Stories can be upvoted and sorted by the number of upvotes they have on the feed. Ensures only registered users can upvote and only one upvote is allowed per user. Feed sorts news articles based on upvotes to show the most relevant/popular articles first. Delete story removes associated upvotes and comments before deleting story to ensure there is no excess garbage data.
 
 Added user_details page which stores and displays only the stories the user has posted. The user is able to view/edit/delete his stories from his profile page as well as the news feed directly. The user is shown details about his profile such as registered name and username and is able to logout directly from this page as well. 
 
