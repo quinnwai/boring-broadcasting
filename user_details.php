@@ -20,17 +20,17 @@ $stmt->execute();
 $stmt->bind_result($last, $first);
 
 
-echo "Welcome " . $user . "<br>";
-echo "Please find below your name according to our records: ";
+printf("<h2> Welcome %s! \n </h2>", htmlentities($_SESSION['user']));
+echo "Please find here your name according to our records: ";
 
-echo "<ul>\n";
+// echo "<ul>\n";
 while($stmt->fetch()){
-	printf("\t<li>%s %s</li>\n",
+	printf("\t%s %s\n",
 		htmlspecialchars($first),
 		htmlspecialchars($last)
 	);
 }
-echo "</ul>\n";
+// echo "</ul>\n";
 
 ?>
 <p> Want to change your password? </p>
