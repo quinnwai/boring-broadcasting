@@ -13,7 +13,7 @@ else{
 }
 
 if($_SESSION['isUser']){
-	printf("Welcome %s! \n <br><br>", htmlentities($_SESSION['user']));
+	printf("<h2> Welcome %s! \n </h2>", htmlentities($_SESSION['user']));
 }
 
 //get all stories
@@ -46,7 +46,7 @@ if($_SESSION['isUser']){
 Logout and return to sign in page? <input type="submit" value = "Logout"/>
 </form>
 
-
+<h2> Stories from your news feed: </h2>
 <?php
 echo "<ul>\n";
 while($stmt->fetch()){
@@ -63,7 +63,7 @@ while($stmt->fetch()){
 	); 
 	?>
 	<div>
-	<form action ="view_story.php" method="POST">
+	<form class = "row" action ="view_story.php" method="POST">
         <input type="hidden" name="story_id" value="<?php printf($id); ?>"/>
         <input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
 		<input type="submit" name ="view_story" value = "view"/>
@@ -71,12 +71,12 @@ while($stmt->fetch()){
 	<?php
 	if($_SESSION['user'] == $author){ ?>
 	
-	<form action ="delete_story.php" method="POST">
+	<form class = "row" action ="delete_story.php" method="POST">
         <input type="hidden" name="story_id" value="<?php printf($id); ?>"/>
 		<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
         <input type="submit" name ="delete_story" value = "delete"/>
     </form>
-    <form action="edit_story_form.php" method="POST">
+    <form class = "row" action="edit_story_form.php" method="POST">
         <input type="hidden" name="story_id" value="<?php printf($id); ?>"/>
 		<input type="hidden" name="title" value="<?php printf($title); ?>"/>
 		<input type="hidden" name="body" value="<?php printf($body); ?>"/>
