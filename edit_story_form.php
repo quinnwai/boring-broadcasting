@@ -28,7 +28,7 @@ $link = (string)$_POST['link'];
 <form action ="edit_story.php" method="POST">
     <input type="hidden" name="story_id" value="<?php printf($story_id); ?>"/>
     Title: <input type="text" name="title" value="<?php printf($title); ?>"/>
-    <textarea id="" name="body" rows="4" cols="50" value="<?php printf($body); ?>"></textarea>
+    Body: <input type="text" name="body" value="<?php printf($body); ?>"/>
     Link: <input type="text" name="link" value="<?php printf($link); ?>"/>
     <input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
     <input type="submit" value ="edit"/>

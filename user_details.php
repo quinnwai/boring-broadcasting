@@ -90,8 +90,8 @@ while($stmt2->fetch()){
 	printf("\t
 	<li>Title: %s<br>
 	Body: %s<br>",
-		htmlspecialchars($title),
-		htmlspecialchars($body)
+	htmlentities($title),
+	htmlentities($body)
 	); 
 	?>
 	<form class="row" action ="view_story.php" method="POST">
@@ -102,8 +102,8 @@ while($stmt2->fetch()){
 
 	<form class="row" action="edit_story_form.php" method="POST">
         <input type="hidden" name="story_id" value="<?php printf($id); ?>"/>
-		<input type="hidden" name="title" value="<?php printf($title); ?>"/>
-		<input type="hidden" name="body" value="<?php printf($body); ?>"/>
+		<input type="hidden" name="title" value="<?php printf(htmlentities($title)); ?>"/>
+		<input type="hidden" name="body" value="<?php printf(htmlentities($body)); ?>"/>
 		<input type="hidden" name="link" value="<?php printf($link); ?>"/>
 		<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
         <input type="submit" name ="edit_story" value = "edit"/>

@@ -40,19 +40,34 @@ $stmt->bind_result($title, $first_name, $last_name, $body, $link);
 $stmt->fetch();
 $stmt->close();
 
-//actually print story
-printf("
-<h1>%s</h1>
-<p>By %s %s</p>
-<p>%s<br></p>
-(<a href=%s>Link</a> to the original article) <br></p>
-\n",
-htmlentities($title),
-htmlentities($first_name),
-htmlentities($last_name),
-htmlentities($body),
-htmlentities($link)
-);
+//actually print story w/ or without link
+if(empty($link)){
+    printf("
+    <h1>%s</h1>
+    <p>By %s %s</p>
+    <p>%s<br></p>
+    \n",
+    htmlentities($title),
+    htmlentities($first_name),
+    htmlentities($last_name),
+    htmlentities($body)
+    );
+}
+else{
+    printf("
+    <h1>%s</h1>
+    <p>By %s %s</p>
+    <p>%s<br></p>
+    <p>(<a href=%s>Link</a> to the original article) <br></p>
+    \n",
+    htmlentities($title),
+    htmlentities($first_name),
+    htmlentities($last_name),
+    htmlentities($body),
+    htmlentities($link)
+    );
+}
+
 
 //// print out upvotes ////
 $stmt = $mysqli->prepare("SELECT COUNT(*) FROM upvotes WHERE story_id = ?");

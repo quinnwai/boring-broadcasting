@@ -25,8 +25,6 @@ $title = (string)$_POST['title'];
 $body = (string)$_POST['body'];
 $link = (string)$_POST['link'];
 
-var_dump($story_id);
-
 if($title == "" || $body == ""){
 	echo "<p> Story was not saved. Make sure to fill out the title and body. </p>";
 }
@@ -53,5 +51,6 @@ else{
 <form action ="feed.php" method="POST">
 <input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
 <input type="submit" value="return" />
+</form>
 </body> 
 </html>

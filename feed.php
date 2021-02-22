@@ -65,7 +65,7 @@ Logout and return to sign in page? <input type="submit" value = "Logout"/>
 <?php
 while($stmt->fetch()){
 	printf("\t
-	<li>Title: %s</a><br>
+	<li>Title: %s<br>
 	Author: %s<br>
 	Upvotes: %s<br>",
 	htmlentities($title),

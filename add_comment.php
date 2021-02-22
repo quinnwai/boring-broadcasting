@@ -49,6 +49,7 @@ else{
 <input type="hidden" name="story_id" value="<?php printf($story_id); ?>"/>
 <input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
 <label> Want to return back to story? <input type="submit" value="return" /> </label>
+</form>
 </div>
 </body> 
 </html>

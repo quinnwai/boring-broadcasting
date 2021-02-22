@@ -40,5 +40,6 @@ $stmt->close();
 <input type="hidden" name="story_id" value="<?php printf($story_id); ?>"/>
 <input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
 <input type="submit" value="return" />
+</form>
 </body> 
 </html>
