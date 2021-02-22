@@ -17,7 +17,7 @@ if($_SESSION['isUser']){
 }
 
 //get all stories
-$stmt = $mysqli->prepare("SELECT username, id, title, body, link FROM stories");
+$stmt = $mysqli->prepare("SELECT s.username, s.id, s.title, s.body, s.link, COUNT(u.username) AS number_of_upvotes FROM stories AS s JOIN upvotes AS u ON u.story_id = s.id GROUP BY s.id");
 if(!$stmt){
 	printf("Query Prep Failed: %s\n", $mysqli->error);
 	exit;
@@ -26,7 +26,7 @@ if(!$stmt){
 
 $stmt->execute();
 
-$stmt->bind_result($author, $id, $title, $body, $link);
+$stmt->bind_result($author, $id, $title, $body, $link, $upvotes);
 
 
 if($_SESSION['isUser']){
@@ -54,10 +54,12 @@ while($stmt->fetch()){
 	<li>Title: %s</a><br>
 	Author: %s<br>
 	Body: %s<br>
+	Upvotes: %s<br>
 	</li>\n",
 		htmlspecialchars($title),
 		htmlspecialchars($author),
-		htmlspecialchars($body)
+		htmlspecialchars($body),
+		htmlspecialchars($upvotes)
 	); 
 	?>
 	<div>

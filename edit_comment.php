@@ -23,8 +23,7 @@ $stmt->bind_param('ss', $comment, $comment_id);
 $stmt->execute();
 $stmt->close();
 
-// header("location: feed.php");
-// TODO: change to form because not view_story stuff
+
 ?>
 <p> Success! Comment has been changed. Want to return back to story? <p>
 <form action ="view_story.php" method="POST">
