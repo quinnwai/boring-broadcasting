@@ -5,10 +5,10 @@ session_start();
 require 'get_token.php';
 
 //get details to display before update
-$story_id = $_POST['story_id'];
-$title = $_POST['title'];
-$body = $_POST['body'];
-$link = $_POST['link'];
+$story_id = (int)$_POST['story_id'];
+$title = (string)$_POST['title'];
+$body = (string)$_POST['body'];
+$link = (string)$_POST['link'];
 printf("this is in fact story %s", $story_id);
 
 //allow user to change their information
@@ -19,7 +19,7 @@ printf("this is in fact story %s", $story_id);
     Body: <input type="text" name="body" value="<?php printf($body); ?>"/>
     Link: <input type="text" name="link" value="<?php printf($link); ?>"/>
     <input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
-    <input type="submit" name ="edit_story"/>
+    <input type="submit" value ="edit"/>
 </form>
 
 
