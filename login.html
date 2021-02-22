@@ -16,7 +16,7 @@
         Login here as a registered user
     </p>
 
-    <form action="feed.php" method="POST">
+    <form action="user_authenticate.php" method="POST">
         <label>Username: <input type="text" name="username"/> </label>
         <label>Password: <input type="password" name="password"/> </label>
         <input type="hidden" name="isUser" value="user"/> </label>
@@ -28,7 +28,7 @@
         Want to login in as a guest?
     </p>
 
-    <form action="feed.php">
+    <form action="guest_authenticate.php">
         Login as guest: <input type="submit" value ="login"/>
     </form>
 

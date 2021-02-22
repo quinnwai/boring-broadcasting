@@ -12,14 +12,7 @@ session_start();
 
 //activate database
 require 'database.php';
-
-//Check CSRF token if already logged in, else login (for either user or guest)
-if($_SESSION['user']){
-	require 'get_token.php';
-}
-else{
-	require "authenticate.php";
-}
+require 'get_token.php';
 
 if($_SESSION['isUser']){
 	printf("<h2> Welcome %s! \n </h2>", htmlentities($_SESSION['user']));
@@ -49,6 +42,9 @@ if($_SESSION['isUser']){
 	<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
 	</form>
 	<?php
+}
+else {
+	printf("<p> Logged in as guest </p>");
 }	
 ?>
 <form action="logout.php">
