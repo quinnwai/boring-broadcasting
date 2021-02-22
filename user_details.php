@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Newsfeed</title>
+	<link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+</head>
+<body>
 <?php
 session_start();
 
@@ -80,23 +88,25 @@ while($stmt2->fetch()){
 	); 
 	?>
 	<div>
-	<form action ="view_story.php" method="POST">
+	<form class="row" action ="view_story.php" method="POST">
         <input type="hidden" name="story_id" value="<?php printf($id); ?>"/>
         <input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
 		<input type="submit" name ="view_story" value = "view"/>
     </form>
-	<form action ="delete_story.php" method="POST">
-        <input type="hidden" name="story_id" value="<?php printf($id); ?>"/>
-		<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
-        <input type="submit" name ="delete_story" value = "delete"/>
-    </form>
-    <form action="edit_story_form.php" method="POST">
+
+	<form class="row" action="edit_story_form.php" method="POST">
         <input type="hidden" name="story_id" value="<?php printf($id); ?>"/>
 		<input type="hidden" name="title" value="<?php printf($title); ?>"/>
 		<input type="hidden" name="body" value="<?php printf($body); ?>"/>
 		<input type="hidden" name="link" value="<?php printf($link); ?>"/>
 		<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
         <input type="submit" name ="edit_story" value = "edit"/>
+    </form>
+
+	<form class="row" action ="delete_story.php" method="POST">
+        <input type="hidden" name="story_id" value="<?php printf($id); ?>"/>
+		<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
+        <input type="submit" name ="delete_story" value = "delete"/>
     </form>
 	</div>
 	<?php 
@@ -105,3 +115,5 @@ echo "</ul>\n";
 $stmt2->close();
 
 ?>
+</body> 
+</html>
