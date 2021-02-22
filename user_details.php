@@ -32,6 +32,25 @@ while($stmt->fetch()){
 }
 echo "</ul>\n";
 
+?>
+<p> Want to change your password? </p>
+<form action="change_password.php" method="POST">
+<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
+<label>New Password: <input type="password" name="pwd"/> </label>
+<input type="submit" value="return" />
+</form>
+
+
+<form action="feed.php" method="POST">
+<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
+Want to head back to the news feed?: <input type="submit" value="Go to News Feed" />
+</form>
+
+<form action="logout.php">
+Logout and return to sign in page? <input type="submit" value = "Logout"/>
+</form>
+
+<?php
 $stmt->close();
 
 $stmt2 = $mysqli->prepare("SELECT id, title, body, link FROM stories WHERE username = ?");
@@ -45,11 +64,9 @@ $stmt2->bind_param('s', $user);
 $stmt2->execute();
 
 $stmt2->bind_result($id, $title, $body, $link);
-
 ?>
-<form action="logout.php">
-Logout and return to sign in page? <input type="submit" value = "Logout"/>
-</form>
+
+<h2>View all the stories you have posted here </h2>
 
 <?php
 echo "<ul>\n";
@@ -88,16 +105,3 @@ echo "</ul>\n";
 $stmt2->close();
 
 ?>
-
-<p> Want to change your password? </p>
-<form action="change_password.php" method="POST">
-<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
-<label>New Password: <input type="password" name="pwd"/> </label>
-<input type="submit" value="return" />
-</form>
-
-<p> Want to head back to the news feed?</p>
-<form action="feed.php" method="POST">
-<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
-<input type="submit" value="return" />
-</form>
