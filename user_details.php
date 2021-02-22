@@ -43,3 +43,4 @@ $stmt->close();
 <label>New Password: <input type="password" name="pwd"/> </label>
 <input type="submit" value="return" />
 
+<!-- add a way to go back to feed -->

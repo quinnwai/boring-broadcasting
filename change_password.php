@@ -6,6 +6,7 @@ require 'get_token.php';
 $pwd = (string)$_POST['pwd'];
 $user = $_SESSION['user'];
 
+// TODO: Make sure this works
 $stmt = $mysqli->prepare("UPDATE users SET password= ? WHERE username = ?");
 if(!$stmt){
 	printf("Query Prep Failed: %s\n", $mysqli->error);
@@ -16,7 +17,6 @@ $stmt->execute();
 $stmt->close();
 echo "Success your password has been successfully changed";
 
-// TODO: if this doesn't work, use form because of CSRF stuff and include hidden var as seen in feed
 ?>
 <p> Return back to your profile page? <p>
 <form action ="user_details.php" method="POST">
