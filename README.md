@@ -7,6 +7,8 @@ Quinn Wai Wong --- 475704 --- quinnwai
 Link to Site: http://ec2-18-219-113-131.us-east-2.compute.amazonaws.com/~qwong/m3_grp/login.html
 
 ## Login Details: 
+Username: qwong
+Password: quinniewaiwai
 
 ## Creative Portion: 
 Created a seperate SQL table called upvotes. Stories can be upvoted and sorted by the number of upvotes they have on the feed. Ensures only registered users can upvote and only one upvote is allowed per user.
