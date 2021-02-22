@@ -12,4 +12,7 @@ creative portion
   -remove random print stuff
   -do some css beaut
   -fix up the news articles posted
+  -Add Login details
+  -fix HTML validators
+
   some easy dropdown shit. create categories for stories and make a dropdown.
