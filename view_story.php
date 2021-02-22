@@ -70,6 +70,13 @@ $stmt->close();
     <input type='hidden' name='token' value='<?php printf($_SESSION['token']); ?>' />
     <?php printf(htmlentities($num_upvotes)); ?> <input type='submit' value = '&#8679;'/>
 </form>
+
+<form action ="add_comment.php" method="POST">
+    <label>Comment: <input type="text" name="comment" /></label>
+    <input type="hidden" name="token" value="<?php printf($_SESSION['token']);?>" />
+    <input type="hidden" name="story_id" value="<?php printf($story_id);?>" />
+    <input type="submit" name ="add_comment"/>
+</form>
 <?php
 
 

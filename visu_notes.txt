@@ -7,8 +7,6 @@ creative portion
 
   sports/politics/finance/tech
 
-  - add css to user-details for edit/delete
-  - add css to view_story for edit/delete
   - fix up login flow
   - for story.php add some beauty. Like bold author name. Write Comments below and stuff u no
 

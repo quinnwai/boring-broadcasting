@@ -10,7 +10,7 @@ $story_id = $_POST['story_id'];
 $user = $_SESSION['user'];
 
 $stmt = $mysqli->prepare("INSERT INTO comments
-( `username`, `comment`, `story_id`) VALUES (?,?,?)");
+(username, comment, story_id) VALUES (?,?,?)");
 
 $stmt->bind_param('sss', $user, $comment, $story_id);
 
