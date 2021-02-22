@@ -86,7 +86,6 @@ $stmt2->bind_result($id, $title, $body, $link);
 <h2>Your Stories </h2>
 <ul>
 <?php
-// echo "<ul>\n";
 while($stmt2->fetch()){
 	printf("\t
 	<li>Title: %s<br>
@@ -118,7 +117,6 @@ while($stmt2->fetch()){
 	<?php 
 	printf("</li>\n");
 }
-// echo "</ul>\n";
 $stmt2->close();
 
 ?>
