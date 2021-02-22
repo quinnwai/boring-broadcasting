@@ -17,6 +17,31 @@ require 'get_token.php';
 
 $story_id = (int)$_POST['story_id'];
 
+
+$stmt1 = $mysqli->prepare("DELETE FROM comments WHERE story_id = ?");
+if(!$stmt1){
+	printf("Query Prep Failed: %s\n", $mysqli->error);
+	exit;
+}
+
+$stmt1->bind_param('s', $story_id);
+
+$stmt1->execute();
+
+$stmt1->close();
+
+$stmt2 = $mysqli->prepare("DELETE FROM upvotes WHERE story_id = ?");
+if(!$stmt2){
+	printf("Query Prep Failed: %s\n", $mysqli->error);
+	exit;
+}
+
+$stmt2->bind_param('s', $story_id);
+
+$stmt2->execute();
+
+$stmt2->close();
+
 $stmt = $mysqli->prepare("DELETE FROM `stories` WHERE id = ?");
 if(!$stmt){
 	printf("Query Prep Failed: %s\n", $mysqli->error);
