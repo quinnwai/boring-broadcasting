@@ -5,14 +5,14 @@ require 'database.php';
 require 'get_token.php';
 
 //get details to update
-$comment = $_POST['comment'];
-$story_id = $_POST['story_id'];
+$comment = (string)$_POST['comment'];
+$story_id = (int)$_POST['story_id'];
 $user = $_SESSION['user'];
 
 $stmt = $mysqli->prepare("INSERT INTO comments
 (username, comment, story_id) VALUES (?,?,?)");
 
-$stmt->bind_param('sss', $user, $comment, $story_id);
+$stmt->bind_param('ssi', $user, $comment, $story_id);
 
 if(!$stmt){
 	printf("Query Prep Failed: %s\n", $mysqli->error);

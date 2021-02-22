@@ -3,15 +3,15 @@ session_start();
 require 'database.php';
 require 'get_token.php';
 
-$story_id = $_POST['story_id'];
+$story_id = (int)$_POST['story_id'];
 
-$stmt = $mysqli->prepare("DELETE FROM `stories` WHERE id = $story_id");
+$stmt = $mysqli->prepare("DELETE FROM `stories` WHERE id = ?");
 if(!$stmt){
 	printf("Query Prep Failed: %s\n", $mysqli->error);
 	exit;
 }
 
-// $stmt->bind_param('s', $story_id);
+$stmt->bind_param('i', $story_id);
 
 $stmt->execute();
 

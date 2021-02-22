@@ -5,9 +5,9 @@ require 'database.php';
 require 'get_token.php';
 
 //get details to update
-$title = $_POST['title'];
-$body = $_POST['body'];
-$link = $_POST['link'];
+$title = (string)$_POST['title'];
+$body = (string)$_POST['body'];
+$link = (string)$_POST['link'];
 $user = $_SESSION['user'];
 
 $stmt = $mysqli->prepare("INSERT INTO `stories`

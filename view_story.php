@@ -16,7 +16,7 @@ require 'get_token.php';
 require 'database.php';
 
 // save story_id for future use in queries
-$story_id = $_POST['story_id'];
+$story_id = (int)$_POST['story_id'];
 
 
 //// print out story ////
@@ -88,7 +88,7 @@ if(!$stmt){
 	printf("Query Prep Failed: %s\n", $mysqli->error);
 	exit;
 }
-$stmt->bind_param('s', $story_id);
+$stmt->bind_param('i', $story_id);
 
 //store in variables
 $stmt->execute();
@@ -113,6 +113,7 @@ while($stmt->fetch()){
     </form>
     <form class = 'row' action ='delete_comment.php' method='POST'>
         <input type='hidden' name='comment_id' value='<?php printf($comment_id); ?>'/>
+        <input type='hidden' name='story_id' value='<?php printf($story_id); ?>'/>
         <input type='hidden' name='token' value='<?php printf($_SESSION['token']); ?>' />
         <input type='submit' value = 'delete'/>
     </form>

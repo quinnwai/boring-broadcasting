@@ -9,4 +9,6 @@ creative portion
 
   - for story.php add some beauty. Like bold author name. Write Comments below and stuff u no
   - make view story more intuitive and easy to use.
+  -remove random print stuff
+  -do some css beaut
   some easy dropdown shit. create categories for stories and make a dropdown.

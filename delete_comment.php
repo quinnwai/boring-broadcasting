@@ -3,14 +3,18 @@ session_start();
 require 'database.php';
 require 'get_token.php';
 
-$comment_id = $_POST['comment_id'];
+$comment_id = (int)$_POST['comment_id'];
+$story_id = (int)$_POST['story_id'];
 
 
-$stmt = $mysqli->prepare("DELETE FROM `comments` WHERE id = $comment_id");
+
+$stmt = $mysqli->prepare("DELETE FROM `comments` WHERE id = ?");
 if(!$stmt){
 	printf("Query Prep Failed: %s\n", $mysqli->error);
 	exit;
 }
+
+$stmt->bind_param('i', $comment_id);
 
 // $stmt->bind_param('s', $comment_id);
 

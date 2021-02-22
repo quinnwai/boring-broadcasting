@@ -8,7 +8,7 @@ require 'get_token.php';
 
 $comment_id = (int)$_POST['comment_id'];
 $comment = (string)$_POST['comment'];
-$story_id = (string)$_POST['story_id'];
+$story_id = (int)$_POST['story_id'];
 ?>
 
 <form action ="edit_comment.php" method="POST">

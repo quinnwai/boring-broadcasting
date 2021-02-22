@@ -9,7 +9,7 @@ require 'get_token.php';
 //get details to update
 $comment_id = (int)$_POST['comment_id'];
 $comment = (string)$_POST['comment'];
-$story_id = (string)$_POST['story_id'];
+$story_id = (int)$_POST['story_id'];
 // printf("story id is: %s", $story_id);
 
 $stmt = $mysqli->prepare("UPDATE comments SET comment = ? WHERE id = ?");
@@ -18,7 +18,7 @@ if(!$stmt){
 	exit;
 }
 
-$stmt->bind_param('ss', $comment, $comment_id);
+$stmt->bind_param('si', $comment, $comment_id);
 
 $stmt->execute();
 $stmt->close();

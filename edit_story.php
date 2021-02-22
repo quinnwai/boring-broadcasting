@@ -26,7 +26,7 @@ if(!$stmt){
 	exit;
 }
 
-$stmt->bind_param('ssss', $title, $body, $link, $story_id);
+$stmt->bind_param('sssi', $title, $body, $link, $story_id);
 // $stmt->bind_param('s', $title);
 
 if(!$stmt){

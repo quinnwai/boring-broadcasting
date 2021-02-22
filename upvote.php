@@ -15,7 +15,7 @@ require 'get_token.php';
 require 'database.php';
 
 //store relevant variables
-$story_id = $_POST['story_id'];
+$story_id = (int)$_POST['story_id'];
 
 //if not a user, not allowed to upvote
 if(!$_SESSION['isUser']){
@@ -45,7 +45,7 @@ else{
             exit;
         }
 
-        $stmt->bind_param('ss', $story_id, $_SESSION['user']);
+        $stmt->bind_param('is', $story_id, $_SESSION['user']);
         $stmt->execute();
         $stmt->close();
         
