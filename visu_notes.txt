@@ -1,32 +1,10 @@
-link title - done
-Show only stories on feed - done
-Reroute from title - done 
-Have edit and delte option in feed for stories
-Have add story option on top of feed if user
-
-Need to have logout function
 Add time posted for commnts?
-Way to add stories from feed
 
-CSRF token shit wherever there's a form yo
-
-A page for story.php
-Have edit and delte comments in this page
-
-OH questions
-yo whats up w/ CSRF shiz yo
-authenticate
 creative portion
   - search bar
   - images
-  - uploads and downloads 
+  - upvotes and downvotes
 
-  he said some upvotes shit. 
-  another column
-  hit go
-  name uploads
-  255 length/values
-  default null
-  we dont care abt that either, not that no, we dont care.
+  sports/politics/finance/tech
 
   some easy dropdown shit. create categories for stories and make a dropdown.
