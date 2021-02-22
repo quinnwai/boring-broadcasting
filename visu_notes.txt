@@ -11,4 +11,5 @@ creative portion
   - make view story more intuitive and easy to use.
   -remove random print stuff
   -do some css beaut
+  -fix up the news articles posted
   some easy dropdown shit. create categories for stories and make a dropdown.
