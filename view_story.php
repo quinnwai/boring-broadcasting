@@ -25,7 +25,9 @@ if(!$stmt){
 $stmt->execute();
 $stmt->bind_result($title, $first_name, $last_name, $body, $link);
 $stmt->fetch();
+$stmt->close();
 
+//actually print story
 printf("
 <h1>%s</h1>
 <p>By %s %s</p>
@@ -39,7 +41,28 @@ htmlspecialchars($body),
 htmlspecialchars($link)
 );
 
+//// print out upvotes ////
+$stmt = $mysqli->prepare("SELECT COUNT(*) FROM upvotes WHERE story_id = ?");
+$stmt->bind_param('s', $story_id);
+if(!$stmt){
+	printf("Query Prep Failed: %s\n", $mysqli->error);
+	exit;
+}
+
+// specify what results to bind before binding
+$stmt->execute();
+$stmt->bind_result($num_upvotes);
+$stmt->fetch();
 $stmt->close();
+
+//include upvotes button
+?>
+<form action ='upvote.php' method='POST'>
+    <input type='hidden' name='story_id' value='<?php printf($story_id); ?>'/>
+    <input type='hidden' name='token' value='<?php printf($_SESSION['token']); ?>' />
+    <?php printf(htmlentities($num_upvotes)); ?> <input type='submit' value = '&#8679;'/>
+</form>
+<?php
 
 
 //// print out comments ////
