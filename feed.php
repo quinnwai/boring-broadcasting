@@ -28,6 +28,26 @@ $stmt->execute();
 
 $stmt->bind_result($author, $id, $title, $body, $link);
 
+
+if($_SESSION['isUser']){
+	?>
+	<form action ="add_story_form.php" method="POST">
+		Add your own story! <input type="submit" name ="add_story" value = "add"/>
+	<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
+	</form>
+	<form action ="user_details.php" method="POST">
+		Go to your profile page <input type="submit" name ="view_details" value = "View profile page"/>
+	<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
+	</form>
+	<?php
+}	
+?>
+<form action="logout.php">
+Logout and return to sign in page? <input type="submit" value = "Logout"/>
+</form>
+
+
+<?php
 echo "<ul>\n";
 while($stmt->fetch()){
 	printf("\t
@@ -68,22 +88,4 @@ while($stmt->fetch()){
 }
 echo "</ul>\n";
 $stmt->close();
-
-if($_SESSION['isUser']){
-	?>
-	<form action ="add_story_form.php" method="POST">
-		Add your own story! <input type="submit" name ="add_story" value = "add"/>
-	<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
-	</form>
-	<form action ="user_details.php" method="POST">
-		Go to your profile page <input type="submit" name ="view_details" value = "View profile page"/>
-	<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
-	</form>
-	<?php
-}	
 ?>
-
-
-<p> Logout and return to login page?</p>
-<form action="logout.php">
-<input type="submit" value = "Logout"/>

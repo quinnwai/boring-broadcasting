@@ -42,5 +42,10 @@ $stmt->close();
 <input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
 <label>New Password: <input type="password" name="pwd"/> </label>
 <input type="submit" value="return" />
+</form>
 
-<!-- add a way to go back to feed -->
+<p> Want to head back to the news feed?</p>
+<form action="feed.php" method="POST">
+<input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
+<input type="submit" value="return" />
+</form>
