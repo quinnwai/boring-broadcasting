@@ -27,23 +27,29 @@ $link = (string)$_POST['link'];
 
 var_dump($story_id);
 
-//update current story with given info
-$stmt = $mysqli->prepare("UPDATE stories SET title = ?, body = ?, link = ? WHERE id = ?");
-if(!$stmt){
-	printf("Query Prep Failed: %s\n", $mysqli->error);
-	exit;
+if($title == "" || $body == ""){
+	echo "<p> Story was not saved. Make sure to fill out the title and body. </p>";
 }
+else{
+	//update current story with given info
+	$stmt = $mysqli->prepare("UPDATE stories SET title = ?, body = ?, link = ? WHERE id = ?");
+	if(!$stmt){
+		printf("Query Prep Failed: %s\n", $mysqli->error);
+		exit;
+	}
 
-$stmt->bind_param('sssi', $title, $body, $link, $story_id);
+	$stmt->bind_param('sssi', $title, $body, $link, $story_id);
 
-if(!$stmt){
-	printf("Query Prep Failed: %s\n", $mysqli->error);
-	exit;
+	if(!$stmt){
+		printf("Query Prep Failed: %s\n", $mysqli->error);
+		exit;
+	}
+	$stmt->execute();
+	$stmt->close();
+	echo "<p> Success! Story successfully edited. </p>";
 }
-$stmt->execute();
-$stmt->close();
 ?>
-<p> Success! Story has been edited. Want to return back to story? <p>
+<p> Want to return back to story? <p>
 <form action ="feed.php" method="POST">
 <input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
 <input type="submit" value="return" />
