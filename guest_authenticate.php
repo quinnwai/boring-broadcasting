@@ -26,9 +26,7 @@ $_SESSION['token'] = bin2hex(random_bytes(32));
     <input type="submit" value="Continue to feed"/>
     <input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />   
 </form>
-</div>
 
-<div id="main">
 <p>
     Want to return to sign in page? 
 </p>

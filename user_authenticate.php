@@ -28,19 +28,19 @@ $stmt->bind_result($cnt, $pwd_hash);
 $stmt->fetch();
 
 $pwd_guess = (string)$_POST['password'];
-
+?>     
+<div id="main">
+<?php
 // Compare the submitted password to the actual password hash
 if($cnt == 1 && password_verify($pwd_guess, $pwd_hash)){
 	// set user, CSRF token, and boolean value for later reference
 	$_SESSION['user'] = $user;
     $_SESSION['isUser'] = true;
     $_SESSION['token'] = bin2hex(random_bytes(32)); ?>
-    <div id="main">
     <form action="feed.php" method="POST">
     <?php printf("<p> Log-in complete. Continue to feed as $user? </p>")?> <input type="submit" value="Continue to feed"/>
     <input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
     </form>
-    </div>
     <?php
 }
 else{
@@ -48,7 +48,6 @@ else{
     ?>
 <?php
 } ?>
-<div id="main">
 <form action="login.html">
 Return to sign in page? <input type="submit" value="Return to Login"/>
 </form>
