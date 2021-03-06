@@ -29,3 +29,5 @@ User Profile Page:
 More Functionality
  * Added functionality for being able to navigate to feed and logout from various pages for ease of use.
  * Ensured that added and edited stories/comments have relevant data filled out before storing into the database (eg comment, body, title)
+
+Graded 3/6/2021. 100%
